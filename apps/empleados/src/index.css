@@ -1,0 +1,14 @@
+:root { font-family: "DM Sans", sans-serif; color: #382117; background: #f6efdf; font-synthesis: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; --cream: #f5ead4; --paper: #fffaf0; --ink: #30190f; --cocoa: #542719; --cocoa-dark: #35170f; --caramel: #c77a46; --gold: #e3b46d; --mint: #4baf7b; --muted: #8d7768; --line: #e9ddc9; --red: #a94737; --shadow: 0 16px 42px rgba(54,28,13,.08); }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; min-height: 100vh; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid rgba(75,175,123,.48); outline-offset: 2px; }
+#root { min-height: 100vh; }
+.eyebrow { color: var(--muted); font: 500 10px "DM Mono", monospace; letter-spacing: 1px; }
+.button { min-height: 42px; padding: 0 16px; border: 1px solid transparent; border-radius: 4px; background: var(--cocoa); color: var(--cream); font-size: 12px; font-weight: 700; transition: .16s ease; }
+.button:hover { background: var(--cocoa-dark); transform: translateY(-1px); }
+.button:disabled { cursor: not-allowed; opacity: .55; transform: none; }
+.button-danger { border-color: var(--red); background: var(--red); }
+.button-danger:hover { background: #87382c; }
+.form-error { color: var(--red); font-size: 12px; }

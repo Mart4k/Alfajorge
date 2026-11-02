@@ -1,0 +1,14 @@
+backend/bin/
+backend/obj/
+publish/
+publish-*/
+.env
+**/.env.*
+!**/.env.example
+**/node_modules/
+apps/*/dist/
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+jwt-signing.key
