@@ -1,5 +1,7 @@
 backend/bin/
 backend/obj/
+**/bin/
+**/obj/
 publish/
 publish-*/
 .env
