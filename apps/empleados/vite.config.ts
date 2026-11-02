@@ -3,7 +3,7 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/empleados/',
+  base: process.env.VITE_APP_BASE || '/',
   plugins: [react()],
   server: {
     host: 'localhost',
