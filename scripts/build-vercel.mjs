@@ -22,3 +22,5 @@ await cp(resolve(root, 'apps/clientes/dist'), resolve(output, 'clientes'), { rec
 
 await run('npm', ['run', 'build', '--workspace', 'apps/empleados'])
 await cp(resolve(root, 'apps/empleados/dist'), resolve(output, 'empleados'), { recursive: true })
+
+await cp(resolve(root, 'apps/shell/index.html'), resolve(output, 'index.html'))

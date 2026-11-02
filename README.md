@@ -89,8 +89,9 @@ El endpoint `GET /api/health` informa si la base SQLite está disponible.
 
 ## Despliegue conjunto en Vercel
 
-El repositorio incluye una configuración para publicar los dos portales en un único proyecto de Vercel:
+El repositorio incluye una configuración para publicar los dos portales en un único proyecto de Vercel, con una página compartida de navegación:
 
+- `/`: página única con navegación entre los portales.
 - `/clientes/`: portal de clientes.
 - `/empleados/`: portal interno.
 

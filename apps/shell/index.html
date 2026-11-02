@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#35170f" />
+    <title>Alfajorge</title>
+    <style>
+      :root { color-scheme: dark; font-family: Arial, sans-serif; background: #1b0d08; color: #fff8ed; }
+      * { box-sizing: border-box; }
+      body { margin: 0; min-height: 100vh; background: #1b0d08; }
+      header { align-items: center; background: #29130c; display: flex; gap: 24px; justify-content: space-between; padding: 14px 24px; }
+      h1 { font-size: 20px; margin: 0; }
+      nav { display: flex; gap: 8px; }
+      button { background: transparent; border: 1px solid #9c6244; border-radius: 6px; color: inherit; cursor: pointer; font: inherit; padding: 9px 16px; }
+      button[aria-selected="true"] { background: #d7a15d; border-color: #d7a15d; color: #29130c; font-weight: 700; }
+      main { height: calc(100vh - 65px); }
+      iframe { border: 0; display: block; height: 100%; width: 100%; }
+      .sr-only { height: 1px; margin: -1px; overflow: hidden; position: absolute; width: 1px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Alfajorge</h1>
+      <nav aria-label="Secciones principales">
+        <button type="button" data-section="clientes" aria-selected="true">Clientes</button>
+        <button type="button" data-section="empleados" aria-selected="false">Empleados</button>
+      </nav>
+    </header>
+    <main>
+      <iframe id="portal" title="Portal de clientes" src="/clientes/"></iframe>
+    </main>
+    <script>
+      const portal = document.querySelector('#portal')
+      const buttons = [...document.querySelectorAll('button[data-section]')]
+      function select(section) {
+        portal.src = `/${section}/`
+        portal.title = `Portal de ${section}`
+        buttons.forEach(button => button.setAttribute('aria-selected', String(button.dataset.section === section)))
+        history.replaceState(null, '', `/${section}/`)
+      }
+      buttons.forEach(button => button.addEventListener('click', () => select(button.dataset.section)))
+      const initialSection = location.pathname.startsWith('/empleados') ? 'empleados' : 'clientes'
+      select(initialSection)
+    </script>
+  </body>
+</html>
