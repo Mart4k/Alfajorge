@@ -1,0 +1,11 @@
+{
+  "name": "alfajorge",
+  "private": true,
+  "workspaces": [
+    "apps/clientes",
+    "apps/empleados"
+  ],
+  "scripts": {
+    "build": "node scripts/build-vercel.mjs"
+  }
+}

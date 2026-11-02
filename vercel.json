@@ -1,0 +1,29 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/clientes/",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/clientes",
+      "destination": "/clientes/index.html"
+    },
+    {
+      "source": "/clientes/(.*)",
+      "destination": "/clientes/index.html"
+    },
+    {
+      "source": "/empleados",
+      "destination": "/empleados/index.html"
+    },
+    {
+      "source": "/empleados/(.*)",
+      "destination": "/empleados/index.html"
+    }
+  ]
+}

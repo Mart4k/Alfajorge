@@ -9,6 +9,7 @@ publish-*/
 !**/.env.example
 **/node_modules/
 apps/*/dist/
+dist/
 *.db
 *.db-*
 *.sqlite

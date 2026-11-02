@@ -86,3 +86,14 @@ npm.cmd --prefix apps/empleados run build
 ```
 
 El endpoint `GET /api/health` informa si la base SQLite está disponible.
+
+## Despliegue conjunto en Vercel
+
+El repositorio incluye una configuración para publicar los dos portales en un único proyecto de Vercel:
+
+- `/clientes/`: portal de clientes.
+- `/empleados/`: portal interno.
+
+Vercel debe usar la raíz del repositorio como **Root Directory**, el comando `npm run build` y la salida `dist`. El build genera ambas aplicaciones dentro de `dist/clientes` y `dist/empleados`.
+
+Definí `VITE_API_URL` con la URL pública del backend. No uses `localhost` en un despliegue público. El backend debe estar publicado por separado y permitir en CORS los dominios de Vercel de ambos portales.
