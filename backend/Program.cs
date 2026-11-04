@@ -59,13 +59,22 @@ if (string.IsNullOrWhiteSpace(issuer) || string.IsNullOrWhiteSpace(audience))
     throw new InvalidOperationException("Configurá Jwt:Issuer y Jwt:Audience.");
 }
 
-var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? [];
+var configuredOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? [];
+var environmentOrigins = builder.Configuration["ALFAJORGE_ALLOWED_ORIGINS"]?
+    .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+    ?? [];
+var allowedOrigins = configuredOrigins
+    .Concat(environmentOrigins)
+    .Concat([
+        "https://alfajorge.vercel.app",
+        "https://alfajorge-clientes1.vercel.app",
+        "https://alfajorge-empleados1.vercel.app"
+    ])
+    .Distinct(StringComparer.OrdinalIgnoreCase)
+    .ToArray();
 builder.Services.AddCors(options => options.AddPolicy("FrontendOrigins", policy =>
 {
-    if (allowedOrigins.Length > 0)
-    {
-        policy.WithOrigins(allowedOrigins).AllowAnyHeader().AllowAnyMethod();
-    }
+    policy.WithOrigins(allowedOrigins).AllowAnyHeader().AllowAnyMethod();
 }));
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(connectionString));
