@@ -99,3 +99,5 @@ El build raíz usa `npm ci` y genera los dos portales dentro de `dist/clientes` 
 Definí `VITE_API_URL` con la URL pública del backend. No uses `localhost` en un despliegue público.
 
 El backend ASP.NET Core continúa separado en `backend/` y debe publicarse en un proveedor compatible con .NET, como Render, Railway o Azure. Luego agregá su URL pública como `VITE_API_URL` en Vercel. El backend permite los dominios principales de Vercel y acepta dominios adicionales mediante la variable `ALFAJORGE_ALLOWED_ORIGINS`, separados por comas.
+
+En Render, creá un **Web Service** con `Docker`, usando `backend` como **Root Directory**. El `Dockerfile` de esa carpeta compila y ejecuta la API. Configurá `ALFAJORGE_TOKEN_SECRET` con una cadena aleatoria de al menos 32 caracteres, `ALFAJORGE_INITIAL_ADMIN_EMAIL`, `ALFAJORGE_INITIAL_ADMIN_PASSWORD` y `ALFAJORGE_ALLOWED_ORIGINS` con el dominio público de Vercel. La base SQLite del plan gratuito se reinicia si la instancia se recrea; usá un disco persistente si necesitás conservar datos en producción.
