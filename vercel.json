@@ -1,27 +1,51 @@
 {
-  "installCommand": "npm ci",
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "clientes": {
+      "root": "apps/alfajorge/clientes",
+      "framework": "vite",
+      "installCommand": "npm ci",
+      "buildCommand": "VITE_APP_BASE=/clientes/ npm run build",
+      "outputDirectory": "dist"
+    },
+    "empleados": {
+      "root": "apps/alfajorge/empleados",
+      "framework": "vite",
+      "installCommand": "npm ci",
+      "buildCommand": "VITE_APP_BASE=/empleados/ npm run build",
+      "outputDirectory": "dist"
+    }
+  },
   "rewrites": [
     {
       "source": "/",
-      "destination": "/index.html"
+      "destination": {
+        "service": "clientes"
+      }
     },
     {
       "source": "/clientes",
-      "destination": "/clientes/index.html"
+      "destination": {
+        "service": "clientes"
+      }
     },
     {
       "source": "/clientes/(.*)",
-      "destination": "/clientes/index.html"
+      "destination": {
+        "service": "clientes"
+      }
     },
     {
       "source": "/empleados",
-      "destination": "/empleados/index.html"
+      "destination": {
+        "service": "empleados"
+      }
     },
     {
       "source": "/empleados/(.*)",
-      "destination": "/empleados/index.html"
+      "destination": {
+        "service": "empleados"
+      }
     }
   ]
 }

@@ -87,23 +87,15 @@ npm.cmd --prefix apps/alfajorge/empleados run build
 
 El endpoint `GET /api/health` informa si la base SQLite está disponible.
 
-## Despliegue conjunto en Vercel
+## Despliegue en Vercel
 
-El repositorio incluye una configuración para publicar los dos portales en un único proyecto de Vercel, con una página compartida de navegación:
+La raíz `vercel.json` configura dos servicios públicos en un mismo proyecto:
 
-- `/`: página única con navegación entre los portales.
-- `/clientes/`: portal de clientes.
-- `/empleados/`: portal interno.
+- `clientes`: `/clientes/*`
+- `empleados`: `/empleados/*`
 
-Todo el frontend está agrupado dentro de `apps/alfajorge/`; el backend continúa separado en `backend/`.
+Cada servicio usa su propia carpeta, `package.json`, `package-lock.json`, instalación `npm ci` y build Vite. No se agregaron bindings porque los portales no se comunican entre sí por API: los enlaces entre portales son URLs públicas.
 
-Vercel debe usar la raíz del repositorio como **Root Directory**, el comando `npm run build` y la salida `dist`. El build genera ambas aplicaciones dentro de `dist/clientes` y `dist/empleados`.
+Definí `VITE_API_URL` con la URL pública del backend. No uses `localhost` en un despliegue público.
 
-Definí `VITE_API_URL` con la URL pública del backend. No uses `localhost` en un despliegue público. El backend debe estar publicado por separado y permitir en CORS los dominios de Vercel de ambos portales.
-
-Para desplegarlos como proyectos separados, creá un proyecto para cada carpeta:
-
-- Empleados: `apps/alfajorge/empleados`
-- Clientes: `apps/alfajorge/clientes`
-
-En cada proyecto, configurá esa carpeta como **Root Directory**, dejá el comando de instalación como `npm ci`, el comando de build como `npm run build` y la salida como `dist`. Cada carpeta incluye su propio `package-lock.json` para evitar que Vercel instale dependencias desde la raíz del repositorio.
+El backend ASP.NET Core continúa separado en `backend/` y debe publicarse en un proveedor compatible con .NET, como Render, Railway o Azure. Luego agregá su URL pública como `VITE_API_URL` en los servicios de Vercel y configurá CORS para los dominios de los portales.
