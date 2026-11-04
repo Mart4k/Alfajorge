@@ -284,7 +284,7 @@ function LoginView({ busy, message, setupRequired, onSubmit, onSetup }: { busy: 
       </form>
       {setupRequired && <div className="first-admin"><p>Todavía no hay cuentas de personal. Creá el primer administrador para configurar el sistema.</p><button className="login-switch" type="button" onClick={() => { setShowSetup(true) }}>Configurar primer administrador</button></div>}
     </>}
-    <a className="public-link" href={import.meta.env.VITE_CLIENTS_URL || 'http://localhost:5173'}>Ir al portal de clientes ↗</a>
+    <a className="public-link" href="https://alfajorge-clientes1.vercel.app/">Ir al portal de clientes ↗</a>
   </section></main>
 }
 
