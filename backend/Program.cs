@@ -74,7 +74,21 @@ var allowedOrigins = configuredOrigins
     .ToArray();
 builder.Services.AddCors(options => options.AddPolicy("FrontendOrigins", policy =>
 {
-    policy.WithOrigins(allowedOrigins).AllowAnyHeader().AllowAnyMethod();
+    policy
+        .SetIsOriginAllowed(origin =>
+        {
+            if (!Uri.TryCreate(origin, UriKind.Absolute, out var uri)
+                || !string.Equals(uri.Scheme, Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase))
+            {
+                return allowedOrigins.Contains(origin, StringComparer.OrdinalIgnoreCase);
+            }
+
+            return allowedOrigins.Contains(origin, StringComparer.OrdinalIgnoreCase)
+                || string.Equals(uri.Host, "vercel.app", StringComparison.OrdinalIgnoreCase)
+                || uri.Host.EndsWith(".vercel.app", StringComparison.OrdinalIgnoreCase);
+        })
+        .AllowAnyHeader()
+        .AllowAnyMethod();
 }));
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(connectionString));
