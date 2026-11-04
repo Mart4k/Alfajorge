@@ -89,12 +89,12 @@ El endpoint `GET /api/health` informa si la base SQLite está disponible.
 
 ## Despliegue en Vercel
 
-La raíz `vercel.json` configura dos servicios públicos en un mismo proyecto:
+La raíz `vercel.json` configura un proyecto Vercel con ambos portales:
 
 - `clientes`: `/clientes/*`
 - `empleados`: `/empleados/*`
 
-Cada servicio usa su propia carpeta, `package.json`, `package-lock.json`, instalación `npm ci` y build Vite. No se agregaron bindings porque los portales no se comunican entre sí por API: los enlaces entre portales son URLs públicas.
+El build raíz usa `npm ci` y genera los dos portales dentro de `dist/clientes` y `dist/empleados`. No se agregaron bindings porque los portales no se comunican entre sí por API: los enlaces entre portales son URLs públicas.
 
 Definí `VITE_API_URL` con la URL pública del backend. No uses `localhost` en un despliegue público.
 
