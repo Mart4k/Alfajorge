@@ -26,25 +26,29 @@
     {
       "source": "/clientes",
       "destination": {
-        "service": "clientes"
+        "service": "clientes",
+        "path": "/"
       }
     },
     {
-      "source": "/clientes/(.*)",
+      "source": "/clientes/:path*",
       "destination": {
-        "service": "clientes"
+        "service": "clientes",
+        "path": "/:path*"
       }
     },
     {
       "source": "/empleados",
       "destination": {
-        "service": "empleados"
+        "service": "empleados",
+        "path": "/"
       }
     },
     {
-      "source": "/empleados/(.*)",
+      "source": "/empleados/:path*",
       "destination": {
-        "service": "empleados"
+        "service": "empleados",
+        "path": "/:path*"
       }
     }
   ]
