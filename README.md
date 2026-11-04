@@ -100,3 +100,10 @@ Todo el frontend está agrupado dentro de `apps/alfajorge/`; el backend continú
 Vercel debe usar la raíz del repositorio como **Root Directory**, el comando `npm run build` y la salida `dist`. El build genera ambas aplicaciones dentro de `dist/clientes` y `dist/empleados`.
 
 Definí `VITE_API_URL` con la URL pública del backend. No uses `localhost` en un despliegue público. El backend debe estar publicado por separado y permitir en CORS los dominios de Vercel de ambos portales.
+
+Para desplegarlos como proyectos separados, creá un proyecto para cada carpeta:
+
+- Empleados: `apps/alfajorge/empleados`
+- Clientes: `apps/alfajorge/clientes`
+
+En cada proyecto, configurá esa carpeta como **Root Directory**, dejá el comando de instalación como `npm ci`, el comando de build como `npm run build` y la salida como `dist`. Cada carpeta incluye su propio `package-lock.json` para evitar que Vercel instale dependencias desde la raíz del repositorio.
