@@ -22,10 +22,10 @@ function run(command, args, env = {}) {
 await rm(output, { recursive: true, force: true })
 await mkdir(output, { recursive: true })
 
-await run('npm', ['run', 'build', '--workspace', 'apps/clientes'], { VITE_APP_BASE: '/clientes/' })
-await cp(resolve(root, 'apps/clientes/dist'), resolve(output, 'clientes'), { recursive: true })
+await run('npm', ['run', 'build', '--workspace', 'apps/alfajorge/clientes'], { VITE_APP_BASE: '/clientes/' })
+await cp(resolve(root, 'apps/alfajorge/clientes/dist'), resolve(output, 'clientes'), { recursive: true })
 
-await run('npm', ['run', 'build', '--workspace', 'apps/empleados'], { VITE_APP_BASE: '/empleados/' })
-await cp(resolve(root, 'apps/empleados/dist'), resolve(output, 'empleados'), { recursive: true })
+await run('npm', ['run', 'build', '--workspace', 'apps/alfajorge/empleados'], { VITE_APP_BASE: '/empleados/' })
+await cp(resolve(root, 'apps/alfajorge/empleados/dist'), resolve(output, 'empleados'), { recursive: true })
 
-await cp(resolve(root, 'apps/shell/index.html'), resolve(output, 'index.html'))
+await cp(resolve(root, 'apps/alfajorge/shell/index.html'), resolve(output, 'index.html'))

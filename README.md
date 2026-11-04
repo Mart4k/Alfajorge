@@ -44,13 +44,13 @@ dotnet run --urls http://localhost:5184
 ```
 
 ```powershell
-cd apps/clientes
+cd apps/alfajorge/clientes
 npm.cmd ci
 npm.cmd run dev
 ```
 
 ```powershell
-cd apps/empleados
+cd apps/alfajorge/empleados
 npm.cmd ci
 npm.cmd run dev
 ```
@@ -81,8 +81,8 @@ Ambas apps usan `VITE_API_URL` para seleccionar el API; por defecto es `http://l
 ```powershell
 dotnet build backend/Alfajorge.Api.csproj
 dotnet test tests/Alfajorge.Api.Tests/Alfajorge.Api.Tests.csproj
-npm.cmd --prefix apps/clientes run build
-npm.cmd --prefix apps/empleados run build
+npm.cmd --prefix apps/alfajorge/clientes run build
+npm.cmd --prefix apps/alfajorge/empleados run build
 ```
 
 El endpoint `GET /api/health` informa si la base SQLite está disponible.
@@ -94,6 +94,8 @@ El repositorio incluye una configuración para publicar los dos portales en un �
 - `/`: página única con navegación entre los portales.
 - `/clientes/`: portal de clientes.
 - `/empleados/`: portal interno.
+
+Todo el frontend está agrupado dentro de `apps/alfajorge/`; el backend continúa separado en `backend/`.
 
 Vercel debe usar la raíz del repositorio como **Root Directory**, el comando `npm run build` y la salida `dist`. El build genera ambas aplicaciones dentro de `dist/clientes` y `dist/empleados`.
 

@@ -2,8 +2,8 @@
   "name": "alfajorge",
   "private": true,
   "workspaces": [
-    "apps/clientes",
-    "apps/empleados"
+    "apps/alfajorge/clientes",
+    "apps/alfajorge/empleados"
   ],
   "scripts": {
     "build": "node scripts/build-vercel.mjs"
